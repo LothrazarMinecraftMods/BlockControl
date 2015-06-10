@@ -34,13 +34,11 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
   
-@Mod(modid = ModControlBlocks.MODID, version = ModControlBlocks.VERSION,	name = ModControlBlocks.NAME, useMetadata = true )  
+@Mod(modid = ModControlBlocks.MODID, useMetadata=true)  
 public class ModControlBlocks
 {
 	public static final String MODID = "samscontrolblocks"; 
 	public static final String TEXTURE_LOCATION = MODID + ":";
-	public static final String VERSION = "1.8-1.0.0";
-	public static final String NAME = "Sam's Block Control";
 	@Instance(value = MODID)
 	public static ModControlBlocks instance;
 	@SidedProxy(clientSide="com.lothrazar.samscontrolblocks.proxy.ClientProxy", serverSide="com.lothrazar.samscontrolblocks.proxy.CommonProxy")

@@ -1,10 +1,10 @@
 {
   "modListVersion": 2,
   "modList": [{
-    "modid": "samskeys",
-    "name": "Sam's Keys and Macros",
-    "description": ".",
-    "version": "1.0.0",
+    "modid": "samscontrolblocks",
+    "name": "Block Control keys",
+    "description": "Key bindings that push, pull, and rotate blocks.",
+    "version": "1.8-1.0.0",
     "mcversion": "1.8",
     "url": "https://github.com/PrinceOfAmber/SamsPowerups/releases",
     "updateUrl": "",
