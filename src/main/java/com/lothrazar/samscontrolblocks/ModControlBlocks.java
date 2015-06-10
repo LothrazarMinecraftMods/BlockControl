@@ -51,15 +51,16 @@ public class ModControlBlocks
 	{ 
 		logger = event.getModLog();  
 	
-		
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
-
+		config.load();
+		
 		String csv = config.getString("push_pull_ignore",MODID, "minecraft:cactus,minecraft:chest",
     			"Ignore list for push and pull keys.");
 		UtilPistonSpell.seIgnoreBlocksFromString(csv);
 		
-    	network = NetworkRegistry.INSTANCE.newSimpleChannel( MODID );     	
-    	
+		if(config.hasChanged()){config.save();}
+		
+    	network = NetworkRegistry.INSTANCE.newSimpleChannel( MODID );     	    	
     	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, MessageKeyPressed.ID, Side.SERVER);
 
 		this.registerEventHandlers();  
