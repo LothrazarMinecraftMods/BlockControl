@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.Logger;     
+
 import com.lothrazar.samscontrolblocks.proxy.*;  
 
 import net.minecraft.block.Block;
@@ -56,16 +57,27 @@ public class ModControlBlocks
 		
 		String csv = config.getString("push_pull_ignore",MODID, "minecraft:cactus,minecraft:bedrock",
     			"Ignore list for push and pull keys.");
-		UtilPistonSpell.seIgnoreBlocksFromString(csv);
+		UtilMoveBlock.seIgnoreBlocksFromString(csv);
 		
 		if(config.hasChanged()){config.save();}
 		
     	network = NetworkRegistry.INSTANCE.newSimpleChannel( MODID );     	    	
-    	network.registerMessage(MessageKeyPressed.class, MessageKeyPressed.class, MessageKeyPressed.ID, Side.SERVER);
+    	network.registerMessage(MessageKeyPush.class, MessageKeyPush.class, MessageKeyPush.ID, Side.SERVER);
+    	network.registerMessage(MessageKeyPull.class, MessageKeyPull.class, MessageKeyPull.ID, Side.SERVER);
+    	network.registerMessage(MessageKeyRotate.class, MessageKeyRotate.class, MessageKeyRotate.ID, Side.SERVER);
 
 		this.registerEventHandlers();  
 	}
-        
+    public static String posToCSV(BlockPos pos)
+    {
+		return pos.getX()+","+pos.getY()+","+pos.getZ();
+    }
+    public static BlockPos stringCSVToBlockPos(String csv)
+    {
+    	String [] spl = csv.split(",");
+
+        return new BlockPos(Integer.parseInt(spl[0]),Integer.parseInt(spl[1]),Integer.parseInt(spl[2]));
+    }
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{      
@@ -94,17 +106,18 @@ public class ModControlBlocks
 		
 		if(posMouse == null){return;}
 		
+		//send different packet depending on which key is pressed
         if(ClientProxy.keyPush.isPressed())
         {
-       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyPush.getKeyCode(),posMouse));
+       		ModControlBlocks.network.sendToServer( new MessageKeyPush(posMouse));
         }
         else if(ClientProxy.keyPull.isPressed())
         {
-       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyPull.getKeyCode(),posMouse));
+       		ModControlBlocks.network.sendToServer( new MessageKeyPull(posMouse));
         }
         else if(ClientProxy.keyTransform.isPressed())
         {
-       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyTransform.getKeyCode(),posMouse));
+       		ModControlBlocks.network.sendToServer( new MessageKeyRotate(posMouse));
         } 
     } 
 	

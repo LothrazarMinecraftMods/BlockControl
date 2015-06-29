@@ -13,7 +13,7 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 
-public class UtilPistonSpell 
+public class UtilMoveBlock 
 { 
 	public static ArrayList<Block> ignoreList = new ArrayList<Block>();
 	private static String ignoreListFromConfig = "";

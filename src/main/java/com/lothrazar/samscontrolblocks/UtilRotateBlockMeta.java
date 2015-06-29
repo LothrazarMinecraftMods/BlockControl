@@ -8,7 +8,7 @@ import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
-public class UtilBlockTransform 
+public class UtilRotateBlockMeta 
 {  
 	private static int INVALID = -1;
 	public static void transformBlock(EntityPlayer player, World world, BlockPos pos)
