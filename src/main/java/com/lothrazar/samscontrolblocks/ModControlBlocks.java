@@ -54,7 +54,7 @@ public class ModControlBlocks
 		Configuration config = new Configuration(event.getSuggestedConfigurationFile());
 		config.load();
 		
-		String csv = config.getString("push_pull_ignore",MODID, "minecraft:cactus,minecraft:chest",
+		String csv = config.getString("push_pull_ignore",MODID, "minecraft:cactus,minecraft:bedrock",
     			"Ignore list for push and pull keys.");
 		UtilPistonSpell.seIgnoreBlocksFromString(csv);
 		

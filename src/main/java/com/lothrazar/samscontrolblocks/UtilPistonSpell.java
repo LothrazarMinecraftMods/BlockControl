@@ -3,9 +3,11 @@ package com.lothrazar.samscontrolblocks;
 import java.util.ArrayList;
 
  
+
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.BlockPos;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
@@ -23,7 +25,18 @@ public class UtilPistonSpell
 		{
 			ignoreList = ModControlBlocks.getBlockListFromCSV(ignoreListFromConfig); 
 		
-			//ignoreList.add(Blocks.bedr)
+			//ignoreList.add(Blocks.bedrock);
+			ignoreList.add(Blocks.end_portal_frame);
+			ignoreList.add(Blocks.end_portal);
+			ignoreList.add(Blocks.portal);
+			ignoreList.add(Blocks.bed);
+			ignoreList.add(Blocks.dark_oak_door);
+			ignoreList.add(Blocks.acacia_door);
+			ignoreList.add(Blocks.birch_door);
+			ignoreList.add(Blocks.oak_door);
+			ignoreList.add(Blocks.spruce_door);
+			ignoreList.add(Blocks.jungle_door);
+			ignoreList.add(Blocks.iron_door);
 		
 		}
 	}
