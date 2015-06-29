@@ -19,18 +19,24 @@ public class UtilPistonSpell
 	private static void translateCSV()
 	{
 		//do this on the fly, could be items not around yet during config change
-		ignoreList = ModControlBlocks.getBlockListFromCSV(ignoreListFromConfig); 
+		if(ignoreList.size() == 0)
+		{
+			ignoreList = ModControlBlocks.getBlockListFromCSV(ignoreListFromConfig); 
+		
+			//ignoreList.add(Blocks.bedr)
+		
+		}
 	}
 	public static void seIgnoreBlocksFromString(String csv)
 	{ 
 		ignoreListFromConfig = csv;
 	} 
  
- 
 	public static void moveBlockTo(World world, EntityPlayer player,BlockPos pos, BlockPos posMoveToHere)
 	{
 		IBlockState hit = world.getBlockState(pos);
 		translateCSV();
+		System.out.println("ignore size: "+ignoreList.size());
 		if(hit == null || ignoreList.contains(hit.getBlock()))
 		{
 			return;

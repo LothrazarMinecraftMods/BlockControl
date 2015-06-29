@@ -88,18 +88,23 @@ public class ModControlBlocks
 	@SubscribeEvent
     public void onKeyInput(InputEvent.KeyInputEvent event) 
     {   
-  
+		if(Minecraft.getMinecraft().objectMouseOver == null){return;}
+		
+		BlockPos posMouse = Minecraft.getMinecraft().objectMouseOver.getBlockPos();
+		
+		if(posMouse == null){return;}
+		
         if(ClientProxy.keyPush.isPressed())
         {
-       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyPush.getKeyCode()));
+       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyPush.getKeyCode(),posMouse));
         }
         else if(ClientProxy.keyPull.isPressed())
         {
-       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyPull.getKeyCode()));
+       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyPull.getKeyCode(),posMouse));
         }
         else if(ClientProxy.keyTransform.isPressed())
         {
-       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyTransform.getKeyCode()));
+       		ModControlBlocks.network.sendToServer( new MessageKeyPressed(ClientProxy.keyTransform.getKeyCode(),posMouse));
         } 
     } 
 	
