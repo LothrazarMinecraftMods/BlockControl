@@ -38,19 +38,14 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	@Override
 	public void fromBytes(ByteBuf buf)
 	{
-		//TODO: convert  pos to/from bytes
 		//http://www.minecraftforge.net/forum/index.php?topic=20135.0
-		//this.keyPressed = buf.readByte();
-		
-		 
-		 csv = ByteBufUtils.readUTF8String(buf); 
-        System.out.println("toBytes   "+csv);
+
+		csv = ByteBufUtils.readUTF8String(buf); 
         
         String [] spl = csv.split(",");
         keyPressed = (byte) Integer.parseInt(spl[0]);
         pos = new BlockPos(Integer.parseInt(spl[1]),Integer.parseInt(spl[2]),Integer.parseInt(spl[3]));
 
-		 //ByteBufUtils.readItemStack(from)
 	}
 	
 	@Override
@@ -63,43 +58,21 @@ public class MessageKeyPressed implements IMessage, IMessageHandler<MessageKeyPr
 	public IMessage onMessage(MessageKeyPressed message, MessageContext ctx)
 	{  
 		EntityPlayer player = ctx.getServerHandler().playerEntity; 
- 
-/*16:45:35] [Netty Server IO #2/ERROR] [FML]: There was a critical exception handling a packet on channel samscontrolblocks
-java.lang.NoClassDefFoundError: net/minecraft/client/Minecraft
-	at com.lothrazar.samscontrolblocks.proxy.MessageKeyPressed.onMessage(MessageKeyPressed.java:47) ~[MessageKeyPressed.class:?]
-	at com.lothrazar.samscontrolblocks.proxy.MessageKeyPressed.onMessage(MessageKeyPressed.java:16) ~[MessageKeyPressed.class:?]
-	at net.minecraftforge.fml.common.network.simpleimpl.SimpleChannelHandlerWrapper.channelRead0(SimpleChannelHandlerWrapper.java:37) ~[SimpleChannelHandlerWrapper.class:?]
-	*/
-		if( message.keyPressed == ClientProxy.keyPush.getKeyCode())
+
+		if( message.keyPressed == ClientProxy.keyPush.getKeyCode() && message.pos != null)
 	 	{ 
-			if(message.pos == null)
-			{
-				System.out.println("keyPressed: pos null, bad packet "+message.csv);
-				return null;
-			}
 			UtilPistonSpell.moveBlockTo(player.worldObj, player, message.pos, message.pos.offset(player.getHorizontalFacing()));
 	 	}
-		else if( message.keyPressed == ClientProxy.keyPull.getKeyCode())
+		else if( message.keyPressed == ClientProxy.keyPull.getKeyCode()&& message.pos != null)
 	 	{  
-			if(message.pos == null)
-			{
-				System.out.println("keyPressed: pos null, bad packet "+message.csv);
-				return null;
-			}
 			UtilPistonSpell.moveBlockTo(player.worldObj, player, message.pos, message.pos.offset(player.getHorizontalFacing().getOpposite()));
 	 	}
-		else if( message.keyPressed == ClientProxy.keyTransform.getKeyCode())
+		else if( message.keyPressed == ClientProxy.keyTransform.getKeyCode()&& message.pos != null)
 	 	{ 
-			if(message.pos == null)
-			{
-				System.out.println("keyPressed: pos null, bad packet "+message.csv);
-				return null;
-			}
 			UtilBlockTransform.transformBlock(player, player.worldObj,  message.pos);
 	 	} 
 		 
 		return null;
 	}
-
 }
  

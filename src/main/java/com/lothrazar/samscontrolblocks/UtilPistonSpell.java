@@ -49,7 +49,7 @@ public class UtilPistonSpell
 	{
 		IBlockState hit = world.getBlockState(pos);
 		translateCSV();
-		System.out.println("ignore size: "+ignoreList.size());
+
 		if(hit == null || ignoreList.contains(hit.getBlock()))
 		{
 			return;
@@ -73,25 +73,5 @@ public class UtilPistonSpell
 				player.swingItem();
 			} 
 		} 
-	}
-	public static void cast(PlayerInteractEvent event) 
-	{
-		BlockPos pos = event.pos;
-		World world = event.world;
-		IBlockState hit = world.getBlockState(pos);
-		
-		if(event.face != null)
-		{
-			EntityPlayer player = event.entityPlayer;
-			
-			BlockPos posTowardsPlayer = pos.offset(event.face,1);
-			
-			BlockPos posAwayPlayer = pos.offset(event.face.getOpposite(),1);
-			 
-			BlockPos posMoveToHere = player.isSneaking() ? posTowardsPlayer : posAwayPlayer;
-			
-			moveBlockTo(world,player,pos,posMoveToHere);
-			
-		}
 	}
 }
