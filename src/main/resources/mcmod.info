@@ -4,7 +4,7 @@
     "modid": "samscontrolblocks",
     "name": "Block Control Keys",
     "description": "Key bindings that push, pull, and rotate blocks.  Pushing and pulling is restricted to only horizontal.  The block rotation key turns stairs and logs into their different positions, as well as carving things like stone brick and sandstone into alternate versions.",
-    "version": "1.8-1.0.0",
+    "version": "1.8-1.0.1",
     "mcversion": "1.8",
     "url": "https://github.com/PrinceOfAmber/SamsPowerups/releases",
     "updateUrl": "",
