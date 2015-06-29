@@ -37,6 +37,7 @@ public class UtilPistonSpell
 			ignoreList.add(Blocks.spruce_door);
 			ignoreList.add(Blocks.jungle_door);
 			ignoreList.add(Blocks.iron_door);
+			ignoreList.add(Blocks.skull);
 		
 		}
 	}
