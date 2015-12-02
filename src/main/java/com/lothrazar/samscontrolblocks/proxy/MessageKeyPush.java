@@ -1,7 +1,6 @@
 package com.lothrazar.samscontrolblocks.proxy;
      
 import com.lothrazar.samscontrolblocks.ModControlBlocks;
-import com.lothrazar.samscontrolblocks.UtilRotateBlockMeta;
 import com.lothrazar.samscontrolblocks.UtilMoveBlock;
 
 import net.minecraftforge.fml.common.network.ByteBufUtils;
@@ -35,7 +34,6 @@ public class MessageKeyPush implements IMessage, IMessageHandler<MessageKeyPush,
 		csv = ByteBufUtils.readUTF8String(buf); 
         
 		pos = ModControlBlocks.stringCSVToBlockPos(csv);
-
 	}
 
 	@Override

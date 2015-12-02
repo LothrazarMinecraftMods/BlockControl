@@ -21,21 +21,19 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import net.minecraftforge.fml.relauncher.Side;
   
-@Mod(modid = ModControlBlocks.MODID, useMetadata=true)  
+@Mod(modid = ModControlBlocks.MODID, useMetadata=true, updateJSON="https://raw.githubusercontent.com/LothrazarMinecraftMods/BlockControl/master/update.json")  
 public class ModControlBlocks
 {
 	public static final String MODID = "samscontrolblocks"; 
@@ -68,16 +66,19 @@ public class ModControlBlocks
 
 		this.registerEventHandlers();  
 	}
+	
     public static String posToCSV(BlockPos pos)
     {
 		return pos.getX()+","+pos.getY()+","+pos.getZ();
     }
+    
     public static BlockPos stringCSVToBlockPos(String csv)
     {
     	String [] spl = csv.split(",");
 
         return new BlockPos(Integer.parseInt(spl[0]),Integer.parseInt(spl[1]),Integer.parseInt(spl[2]));
     }
+    
 	@EventHandler
 	public void onInit(FMLInitializationEvent event)
 	{      
@@ -85,8 +86,7 @@ public class ModControlBlocks
 	}
 
 	private void registerEventHandlers() 
-	{ 
-		FMLCommonHandler.instance().bus().register(instance); 
+	{
 		MinecraftForge.EVENT_BUS.register(instance);   
 	}
 	
@@ -148,6 +148,7 @@ public class ModControlBlocks
 		 
 		 return blocks;
 	}
+	
 	public static void playSoundAt(Entity player, String sound)
 	{ 
 		player.worldObj.playSoundAtEntity(player, sound, 1.0F, 1.0F);
@@ -185,6 +186,7 @@ public class ModControlBlocks
        
 		return EnumFacing.getHorizontal( facing/2 );
 	}
+	
 	public static void spawnParticle(World world, EnumParticleTypes type, BlockPos pos)
 	{
 		spawnParticle(world,type,pos.getX(),pos.getY(),pos.getZ());
@@ -198,6 +200,7 @@ public class ModControlBlocks
 			world.spawnParticle(type, x + (world.rand.nextDouble() - 0.5D) * (double)0.8, y + world.rand.nextDouble() * (double)1.5 - (double)0.1, z + (world.rand.nextDouble() - 0.5D) * (double)0.8, 0.0D, 0.0D, 0.0D);
 		} 
     }
+	
 	public static void execute(EntityPlayer player, String cmd)
 	{
 		MinecraftServer.getServer().getCommandManager().executeCommand(player, cmd);

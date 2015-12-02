@@ -2,8 +2,6 @@ package com.lothrazar.samscontrolblocks.proxy;
      
 import com.lothrazar.samscontrolblocks.ModControlBlocks;
 import com.lothrazar.samscontrolblocks.UtilRotateBlockMeta;
-import com.lothrazar.samscontrolblocks.UtilMoveBlock;
-
 import net.minecraftforge.fml.common.network.ByteBufUtils;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -35,7 +33,6 @@ public class MessageKeyRotate implements IMessage, IMessageHandler<MessageKeyRot
 		csv = ByteBufUtils.readUTF8String(buf); 
         
 		pos = ModControlBlocks.stringCSVToBlockPos(csv);
-
 	}
 
 	@Override
