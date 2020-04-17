@@ -12,15 +12,18 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.util.BlockPos;
-import net.minecraft.util.ChatComponentTranslation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.IChatComponent;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -123,7 +126,7 @@ public class ModControlBlocks
 	
 	public static void playSoundAt(World world,BlockPos pos, String sound)
 	{ 
-		world.playSound(pos.getX(), pos.getY(), pos.getZ(), sound, 1.0F, 1.0F, false);
+		world.playSound((double)pos.getX(), (double)pos.getY(), (double)pos.getZ(), new SoundEvent(new ResourceLocation(sound)), SoundCategory.MASTER,1.0F, 1.0F,false);
 	}
 	
 	public static ArrayList<Block> getBlockListFromCSV(String csv)
@@ -151,25 +154,25 @@ public class ModControlBlocks
 	
 	public static void playSoundAt(Entity player, String sound)
 	{ 
-		player.worldObj.playSoundAtEntity(player, sound, 1.0F, 1.0F);
+		player.world.playSound((double)player.getPosition().getX(), (double)player.getPosition().getY(), (double)player.getPosition().getZ(), new SoundEvent(new ResourceLocation(sound)), SoundCategory.MASTER,1.0F, 1.0F,false);
 	}
  
 	public static String lang(String name)
 	{
-		return StatCollector.translateToLocal(name);
+		return name;
 	}
 
 	public static void addChatMessage(String string) 
 	{ 
-		addChatMessage(new ChatComponentTranslation(string)); 
+		addChatMessage(string); 
 	}
-	public static void addChatMessage(IChatComponent string) 
+	public static void addChatMessage(ITextComponent string) 
 	{ 
 		 Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(string); 
 	}
 	public static void addChatMessage(EntityPlayer player,String string) 
 	{ 
-		player.addChatMessage(new ChatComponentTranslation(string));
+		player.sendMessage(new TextComponentString(string));
 	}
 	
 	public static EnumFacing getPlayerFacing(EntityPlayer player) 
@@ -203,7 +206,7 @@ public class ModControlBlocks
 	
 	public static void execute(EntityPlayer player, String cmd)
 	{
-		MinecraftServer.getServer().getCommandManager().executeCommand(player, cmd);
+		FMLCommonHandler.instance().getMinecraftServerInstance().getCommandManager().executeCommand(player, cmd);
 	}
 
 }

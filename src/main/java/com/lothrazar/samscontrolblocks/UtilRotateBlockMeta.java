@@ -4,7 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World;
 
@@ -13,14 +14,14 @@ public class UtilRotateBlockMeta
 	private static int INVALID = -1;
 	public static void transformBlock(EntityPlayer player, World world, BlockPos pos)
 	{
-		IBlockState blockState = player.worldObj.getBlockState(pos);
+		IBlockState blockState = player.world.getBlockState(pos);
 		Block block = blockState.getBlock();
 		int metaCurrent, metaNew = INVALID;
 		IBlockState blockStateNew = null;
 		
-		if(block == Blocks.red_mushroom_block)
+		if(block == Blocks.RED_MUSHROOM_BLOCK)
 		{
-			metaCurrent = Blocks.red_mushroom_block.getMetaFromState(blockState);
+			metaCurrent = Blocks.RED_MUSHROOM_BLOCK.getMetaFromState(blockState);
 			
 			//from wiki we know that [11-13] are unused
 			//meta 14 is only vanilla used one 	//OLD one was meta 0, all pores
@@ -35,12 +36,12 @@ public class UtilRotateBlockMeta
 				metaNew = 0;
 
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.red_mushroom_block.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.RED_MUSHROOM_BLOCK.getStateFromMeta(metaNew);
 		}
-		else if(block == Blocks.stonebrick)
+		else if(block == Blocks.STONEBRICK)
 		{
 
-			metaCurrent = Blocks.stonebrick.getMetaFromState(blockState);
+			metaCurrent = Blocks.STONEBRICK.getMetaFromState(blockState);
 
 			if(metaCurrent == 0)//0 is regular, 3 is chiseled
 				metaNew = 3;
@@ -49,12 +50,12 @@ public class UtilRotateBlockMeta
 			//Not doing mossy or cracked here is deliberate, it costs vines or smelting time to make those
 			
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.stonebrick.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STONEBRICK.getStateFromMeta(metaNew);
 		} 
-		else if(block == Blocks.stone)
+		else if(block == Blocks.STONE)
 		{
 
-			metaCurrent = Blocks.stone.getMetaFromState(blockState);
+			metaCurrent = Blocks.STONE.getMetaFromState(blockState);
 
 			//skip 0 which is regular stone
 			//granite regular/polish
@@ -74,11 +75,11 @@ public class UtilRotateBlockMeta
 				metaNew = 5; 
 
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.stone.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STONE.getStateFromMeta(metaNew);
 		}
-		else if(block == Blocks.brown_mushroom_block)
+		else if(block == Blocks.BROWN_MUSHROOM_BLOCK)
 		{
-			metaCurrent = Blocks.brown_mushroom_block.getMetaFromState(blockState);
+			metaCurrent = Blocks.BROWN_MUSHROOM_BLOCK.getMetaFromState(blockState);
 
 			if(0 <= metaCurrent && metaCurrent <= 9)
 				metaNew = metaCurrent+1;
@@ -90,11 +91,11 @@ public class UtilRotateBlockMeta
 				metaNew = 0;
 			
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.brown_mushroom_block.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.BROWN_MUSHROOM_BLOCK.getStateFromMeta(metaNew);
 		}
-		else if(block == Blocks.double_stone_slab)
+		else if(block == Blocks.DOUBLE_STONE_SLAB)
 		{
-			metaCurrent = Blocks.double_stone_slab.getMetaFromState(blockState);
+			metaCurrent = Blocks.DOUBLE_STONE_SLAB.getMetaFromState(blockState);
 
 			if(metaCurrent == 0)//smoothstone slabs
 				metaNew = 8;
@@ -107,11 +108,11 @@ public class UtilRotateBlockMeta
 				metaNew = 1;
 
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.double_stone_slab.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.DOUBLE_STONE_SLAB.getStateFromMeta(metaNew);
 		}
-		else if(block == Blocks.double_stone_slab2)
+		else if(block == Blocks.DOUBLE_STONE_SLAB2)
 		{ 
-			metaCurrent = Blocks.double_stone_slab2.getMetaFromState(blockState);
+			metaCurrent = Blocks.DOUBLE_STONE_SLAB2.getMetaFromState(blockState);
 
 			if(metaCurrent == 0)//RED sandstone slabs
 				metaNew = 8;
@@ -119,11 +120,11 @@ public class UtilRotateBlockMeta
 				metaNew = 0;
   
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.double_stone_slab2.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.DOUBLE_STONE_SLAB2.getStateFromMeta(metaNew);
 		}
-		else if(block == Blocks.log2)
+		else if(block == Blocks.LOG2)
 		{ 
-			metaCurrent = Blocks.log2.getMetaFromState(blockState);
+			metaCurrent = Blocks.LOG2.getMetaFromState(blockState);
 
 
 			int acaciaVert = 0;
@@ -155,11 +156,11 @@ public class UtilRotateBlockMeta
 				metaNew = darkVert;
   
 			if(metaNew > INVALID)
-				blockStateNew =  Blocks.log2.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.LOG2.getStateFromMeta(metaNew);
 		}
-		else if(block == Blocks.log)
+		else if(block == Blocks.LOG)
 		{
-			metaCurrent = Blocks.log.getMetaFromState(blockState);
+			metaCurrent = Blocks.LOG.getMetaFromState(blockState);
 
 			int oakVert = 0;
 			int spruceVert=1;
@@ -216,12 +217,12 @@ public class UtilRotateBlockMeta
   
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.log.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.LOG.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.stone_slab)
+		else if(block == Blocks.STONE_SLAB)
 		{
-			metaCurrent = Blocks.stone_slab.getMetaFromState(blockState);
+			metaCurrent = Blocks.STONE_SLAB.getMetaFromState(blockState);
 			 
 			if(metaCurrent <= 7) 
 				metaNew = metaCurrent + 8;
@@ -231,12 +232,12 @@ public class UtilRotateBlockMeta
 			
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.stone_slab.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STONE_SLAB.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.stone_slab2)
+		else if(block == Blocks.STONE_SLAB2)
 		{
-			metaCurrent = Blocks.stone_slab2.getMetaFromState(blockState);
+			metaCurrent = Blocks.STONE_SLAB2.getMetaFromState(blockState);
 			 
 			if(metaCurrent <= 7) 
 				metaNew = metaCurrent + 8;
@@ -246,12 +247,12 @@ public class UtilRotateBlockMeta
 			
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.stone_slab2.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STONE_SLAB2.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.wooden_slab)
+		else if(block == Blocks.WOODEN_SLAB)
 		{
-			metaCurrent = Blocks.wooden_slab.getMetaFromState(blockState);
+			metaCurrent = Blocks.WOODEN_SLAB.getMetaFromState(blockState);
 			 
 			if(metaCurrent <= 7) 
 				metaNew = metaCurrent + 8;
@@ -261,12 +262,12 @@ public class UtilRotateBlockMeta
 			
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.wooden_slab.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.WOODEN_SLAB.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.sandstone)
+		else if(block == Blocks.SANDSTONE)
 		{
-			metaCurrent = Blocks.sandstone.getMetaFromState(blockState);
+			metaCurrent = Blocks.SANDSTONE.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 2) 
 				metaNew = 0;
@@ -276,12 +277,12 @@ public class UtilRotateBlockMeta
 			
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.sandstone.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.SANDSTONE.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.red_sandstone)
+		else if(block == Blocks.RED_SANDSTONE)
 		{
-			metaCurrent = Blocks.red_sandstone.getMetaFromState(blockState);
+			metaCurrent = Blocks.RED_SANDSTONE.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 2) 
 				metaNew = 0;
@@ -291,12 +292,12 @@ public class UtilRotateBlockMeta
 			
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.red_sandstone.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.RED_SANDSTONE.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.sandstone_stairs)
+		else if(block == Blocks.SANDSTONE_STAIRS)
 		{
-			metaCurrent = Blocks.sandstone_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.SANDSTONE_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -305,12 +306,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.sandstone_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.SANDSTONE_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.red_sandstone_stairs)
+		else if(block == Blocks.RED_SANDSTONE_STAIRS)
 		{
-			metaCurrent = Blocks.red_sandstone_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.RED_SANDSTONE_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -319,12 +320,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.red_sandstone_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.RED_SANDSTONE_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.stone_stairs)
+		else if(block == Blocks.STONE_STAIRS)
 		{
-			metaCurrent = Blocks.stone_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.STONE_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -333,12 +334,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.stone_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STONE_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.stone_brick_stairs)
+		else if(block == Blocks.STONE_BRICK_STAIRS)
 		{
-			metaCurrent = Blocks.stone_brick_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.STONE_BRICK_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -347,12 +348,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.stone_brick_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STONE_BRICK_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.quartz_stairs)
+		else if(block == Blocks.QUARTZ_STAIRS)
 		{
-			metaCurrent = Blocks.quartz_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.QUARTZ_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -361,12 +362,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.quartz_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.QUARTZ_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.brick_stairs)
+		else if(block == Blocks.BRICK_STAIRS)
 		{
-			metaCurrent = Blocks.brick_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.BRICK_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -375,12 +376,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.brick_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.BRICK_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.spruce_stairs)
+		else if(block == Blocks.SPRUCE_STAIRS)
 		{
-			metaCurrent = Blocks.spruce_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.SPRUCE_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -389,12 +390,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.spruce_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.SPRUCE_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.birch_stairs)
+		else if(block == Blocks.BIRCH_STAIRS)
 		{
-			metaCurrent = Blocks.birch_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.BIRCH_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -403,12 +404,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.birch_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.BIRCH_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.oak_stairs)
+		else if(block == Blocks.OAK_STAIRS)
 		{
-			metaCurrent = Blocks.oak_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.OAK_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -417,12 +418,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.oak_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.OAK_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.jungle_stairs)
+		else if(block == Blocks.JUNGLE_STAIRS)
 		{
-			metaCurrent = Blocks.jungle_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.JUNGLE_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -431,12 +432,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.jungle_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.JUNGLE_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.acacia_stairs)
+		else if(block == Blocks.ACACIA_STAIRS)
 		{
-			metaCurrent = Blocks.acacia_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.ACACIA_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -445,12 +446,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.acacia_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.ACACIA_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.dark_oak_stairs)
+		else if(block == Blocks.DARK_OAK_STAIRS)
 		{
-			metaCurrent = Blocks.dark_oak_stairs.getMetaFromState(blockState);
+			metaCurrent = Blocks.DARK_OAK_STAIRS.getMetaFromState(blockState);
 
 			if(metaCurrent == 8) 
 				metaNew = 0;
@@ -459,12 +460,12 @@ public class UtilRotateBlockMeta
 		 
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.dark_oak_stairs.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.DARK_OAK_STAIRS.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.quartz_block)
+		else if(block == Blocks.QUARTZ_BLOCK)
 		{
-			metaCurrent = Blocks.quartz_block.getMetaFromState(blockState);
+			metaCurrent = Blocks.QUARTZ_BLOCK.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 4) 
 				metaNew = 0;
@@ -473,12 +474,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.quartz_block.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.QUARTZ_BLOCK.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.pumpkin)
+		else if(block == Blocks.PUMPKIN)
 		{ 
-			metaCurrent = Blocks.pumpkin.getMetaFromState(blockState);
+			metaCurrent = Blocks.PUMPKIN.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 4) 
 				metaNew = 0;
@@ -487,12 +488,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.pumpkin.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.PUMPKIN.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.lit_pumpkin)
+		else if(block == Blocks.LIT_PUMPKIN)
 		{ 
-			metaCurrent = Blocks.lit_pumpkin.getMetaFromState(blockState);
+			metaCurrent = Blocks.LIT_PUMPKIN.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 4) 
 				metaNew = 0;
@@ -501,12 +502,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.lit_pumpkin.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.LIT_PUMPKIN.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.hay_block)
+		else if(block == Blocks.HAY_BLOCK)
 		{ 
-			metaCurrent = Blocks.hay_block.getMetaFromState(blockState);
+			metaCurrent = Blocks.HAY_BLOCK.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 0) 
 				metaNew = 4;
@@ -517,12 +518,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.hay_block.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.HAY_BLOCK.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.rail)
+		else if(block == Blocks.RAIL)
 		{
-			metaCurrent = Blocks.rail.getMetaFromState(blockState);
+			metaCurrent = Blocks.RAIL.getMetaFromState(blockState);
 
 			/*RAILS:
 			 * 0	Straight rail connecting to the north and south.
@@ -542,12 +543,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.rail.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.RAIL.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.dropper)
+		else if(block == Blocks.DROPPER)
 		{ 
-			metaCurrent = Blocks.dropper.getMetaFromState(blockState);
+			metaCurrent = Blocks.DROPPER.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 5) 
 				metaNew = 0;
@@ -556,12 +557,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.dropper.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.DROPPER.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.dispenser)
+		else if(block == Blocks.DISPENSER)
 		{ 
-			metaCurrent = Blocks.dispenser.getMetaFromState(blockState);
+			metaCurrent = Blocks.DISPENSER.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 5) 
 				metaNew = 0;
@@ -570,12 +571,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.dispenser.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.DISPENSER.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.hopper)
+		else if(block == Blocks.HOPPER)
 		{ 
-			metaCurrent = Blocks.hopper.getMetaFromState(blockState);
+			metaCurrent = Blocks.HOPPER.getMetaFromState(blockState);
 			 
 			if(metaCurrent == 5) 
 				metaNew = 0;
@@ -586,12 +587,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.hopper.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.HOPPER.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.furnace)
+		else if(block == Blocks.FURNACE)
 		{ 
-			metaCurrent = Blocks.furnace.getMetaFromState(blockState);
+			metaCurrent = Blocks.FURNACE.getMetaFromState(blockState);
 			  
 			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
 				metaNew = 2;
@@ -600,26 +601,12 @@ public class UtilRotateBlockMeta
 			  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.furnace.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.FURNACE.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.chest)
+		else if(block == Blocks.CHEST)
 		{ 
-			metaCurrent = Blocks.chest.getMetaFromState(blockState);
-			  
-			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
-				metaNew = 2;
-			else
-				metaNew = metaCurrent + 1; //rotate  
- 
-			if(metaNew > INVALID)
-			{ 
-				blockStateNew =  Blocks.chest.getStateFromMeta(metaNew);
-			}
-		}
-		else if(block == Blocks.trapped_chest)
-		{ 
-			metaCurrent = Blocks.trapped_chest.getMetaFromState(blockState);
+			metaCurrent = Blocks.CHEST.getMetaFromState(blockState);
 			  
 			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
 				metaNew = 2;
@@ -628,12 +615,26 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.trapped_chest.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.CHEST.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.piston)
+		else if(block == Blocks.TRAPPED_CHEST)
 		{ 
-			metaCurrent = Blocks.piston.getMetaFromState(blockState);
+			metaCurrent = Blocks.TRAPPED_CHEST.getMetaFromState(blockState);
+			  
+			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
+				metaNew = 2;
+			else
+				metaNew = metaCurrent + 1; //rotate  
+ 
+			if(metaNew > INVALID)
+			{ 
+				blockStateNew =  Blocks.TRAPPED_CHEST.getStateFromMeta(metaNew);
+			}
+		}
+		else if(block == Blocks.PISTON)
+		{ 
+			metaCurrent = Blocks.PISTON.getMetaFromState(blockState);
 
 			if(metaCurrent == 5) 
 				metaNew = 0;
@@ -642,12 +643,12 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.piston.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.PISTON.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.sticky_piston)
+		else if(block == Blocks.STICKY_PISTON)
 		{ 
-			metaCurrent = Blocks.sticky_piston.getMetaFromState(blockState);
+			metaCurrent = Blocks.STICKY_PISTON.getMetaFromState(blockState);
 
 			if(metaCurrent == 5) 
 				metaNew = 0;
@@ -656,12 +657,12 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.sticky_piston.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STICKY_PISTON.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.wall_sign)
+		else if(block == Blocks.WALL_SIGN)
 		{ 
-			metaCurrent = Blocks.wall_sign.getMetaFromState(blockState);
+			metaCurrent = Blocks.WALL_SIGN.getMetaFromState(blockState);
 
 			if(metaCurrent == 5) //0,1 are down/up, but only 4 directions here
 				metaNew = 2;
@@ -670,12 +671,12 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.wall_sign.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.WALL_SIGN.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.standing_sign)
+		else if(block == Blocks.STANDING_SIGN)
 		{ 
-			metaCurrent = Blocks.standing_sign.getMetaFromState(blockState);
+			metaCurrent = Blocks.STANDING_SIGN.getMetaFromState(blockState);
 
 			if(metaCurrent == 15)  
 				metaNew = 0;
@@ -684,12 +685,12 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.standing_sign.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STANDING_SIGN.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.standing_banner)
+		else if(block == Blocks.STANDING_BANNER)
 		{
-			metaCurrent = Blocks.standing_banner.getMetaFromState(blockState);
+			metaCurrent = Blocks.STANDING_BANNER.getMetaFromState(blockState);
 
 			if(metaCurrent == 15)  
 				metaNew = 0;
@@ -698,12 +699,12 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.standing_banner.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.STANDING_BANNER.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.trapdoor)
+		else if(block == Blocks.TRAPDOOR)
 		{
-			metaCurrent = Blocks.trapdoor.getMetaFromState(blockState); 
+			metaCurrent = Blocks.TRAPDOOR.getMetaFromState(blockState); 
 
 			if(metaCurrent >= 8)  
 				metaNew = metaCurrent - 8; //move it from top to bottom and back. NOT spinning its side
@@ -712,12 +713,12 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{  
-				blockStateNew =  Blocks.trapdoor.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.TRAPDOOR.getStateFromMeta(metaNew);
 			}
 		}
-		else if(block == Blocks.iron_trapdoor)
+		else if(block == Blocks.IRON_TRAPDOOR)
 		{
-			metaCurrent = Blocks.iron_trapdoor.getMetaFromState(blockState); 
+			metaCurrent = Blocks.IRON_TRAPDOOR.getMetaFromState(blockState); 
 
 			if(metaCurrent >= 8)  
 				metaNew = metaCurrent - 8;
@@ -726,13 +727,13 @@ public class UtilRotateBlockMeta
  
 			if(metaNew > INVALID)
 			{ 
-				blockStateNew =  Blocks.iron_trapdoor.getStateFromMeta(metaNew);
+				blockStateNew =  Blocks.IRON_TRAPDOOR.getStateFromMeta(metaNew);
 			}
 		}
 		  
 		if(blockStateNew != null)
 		{
-			player.swingItem();
+			player.swingArm(EnumHand.MAIN_HAND);
 			 
 			if(world.isRemote) // clientside
 			{
@@ -742,7 +743,7 @@ public class UtilRotateBlockMeta
 			{
 				ModControlBlocks.playSoundAt(player, "random.wood_click");
  
-				player.worldObj.setBlockState(pos,blockStateNew);
+				player.world.setBlockState(pos,blockStateNew);
 				  
 				 
 			} 

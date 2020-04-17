@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 
 public class MessageKeyRotate implements IMessage, IMessageHandler<MessageKeyRotate, IMessage>
 {
@@ -44,9 +44,9 @@ public class MessageKeyRotate implements IMessage, IMessageHandler<MessageKeyRot
 	@Override
 	public IMessage onMessage(MessageKeyRotate message, MessageContext ctx)
 	{  
-		EntityPlayer player = ctx.getServerHandler().playerEntity; 		
+		EntityPlayer player = ctx.getServerHandler().player; 		
 		
-		UtilRotateBlockMeta.transformBlock(player, player.worldObj,  message.pos);
+		UtilRotateBlockMeta.transformBlock(player, player.world,  message.pos);
 		
 		return null;
 	}
