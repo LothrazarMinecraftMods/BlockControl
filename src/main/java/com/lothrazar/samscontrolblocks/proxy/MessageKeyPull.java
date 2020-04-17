@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 
 public class MessageKeyPull implements IMessage, IMessageHandler<MessageKeyPull, IMessage>
 {
@@ -46,9 +46,9 @@ public class MessageKeyPull implements IMessage, IMessageHandler<MessageKeyPull,
 	@Override
 	public IMessage onMessage(MessageKeyPull message, MessageContext ctx)
 	{  
-		EntityPlayer player = ctx.getServerHandler().playerEntity; 		
+		EntityPlayer player = ctx.getServerHandler().player; //.playerEntity; 		
 		
-		UtilMoveBlock.moveBlockTo(player.worldObj, player, message.pos, message.pos.offset(player.getHorizontalFacing().getOpposite()));
+		UtilMoveBlock.moveBlockTo(player.world, player, message.pos, message.pos.offset(player.getHorizontalFacing().getOpposite()));
 	
 		return null;
 	}

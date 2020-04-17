@@ -9,20 +9,20 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
 
 public class MessageKeyPush implements IMessage, IMessageHandler<MessageKeyPush, IMessage>
 {
-	private BlockPos pos;
+	private net.minecraft.util.math.BlockPos pos;
 	private String csv;
 	public static final int ID = 0;
 	public MessageKeyPush()
 	{ 
 	}
 	
-	public MessageKeyPush(BlockPos pm)
+	public MessageKeyPush(net.minecraft.util.math.BlockPos posMouse)
 	{ 
-		pos = pm;
+		pos = posMouse;
 		csv = ModControlBlocks.posToCSV(pos);
 	}
 
@@ -45,9 +45,9 @@ public class MessageKeyPush implements IMessage, IMessageHandler<MessageKeyPush,
 	@Override
 	public IMessage onMessage(MessageKeyPush message, MessageContext ctx)
 	{  
-		EntityPlayer player = ctx.getServerHandler().playerEntity; 		
+		EntityPlayer player = ctx.getServerHandler().player; // .playerEntity; 		
 		
-		UtilMoveBlock.moveBlockTo(player.worldObj, player, message.pos, message.pos.offset(player.getHorizontalFacing()));
+		UtilMoveBlock.moveBlockTo(player.world, player, message.pos, message.pos.offset(player.getHorizontalFacing())); //.worldObj
 	
 		return null;
 	}
