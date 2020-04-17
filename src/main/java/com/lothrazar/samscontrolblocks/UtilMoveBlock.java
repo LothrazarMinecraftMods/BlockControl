@@ -6,7 +6,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.BlockPos;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.world.World; 
 
@@ -23,18 +24,18 @@ public class UtilMoveBlock
 			ignoreList = ModControlBlocks.getBlockListFromCSV(ignoreListFromConfig); 
 		
 			//ignoreList.add(Blocks.bedrock);
-			ignoreList.add(Blocks.end_portal_frame);
-			ignoreList.add(Blocks.end_portal);
-			ignoreList.add(Blocks.portal);
-			ignoreList.add(Blocks.bed);
-			ignoreList.add(Blocks.dark_oak_door);
-			ignoreList.add(Blocks.acacia_door);
-			ignoreList.add(Blocks.birch_door);
-			ignoreList.add(Blocks.oak_door);
-			ignoreList.add(Blocks.spruce_door);
-			ignoreList.add(Blocks.jungle_door);
-			ignoreList.add(Blocks.iron_door);
-			ignoreList.add(Blocks.skull);
+			ignoreList.add(Blocks.END_PORTAL_FRAME);
+			ignoreList.add(Blocks.END_PORTAL);
+			ignoreList.add(Blocks.PORTAL);
+			ignoreList.add(Blocks.BED);
+			ignoreList.add(Blocks.DARK_OAK_DOOR);
+			ignoreList.add(Blocks.ACACIA_DOOR);
+			ignoreList.add(Blocks.BIRCH_DOOR);
+			ignoreList.add(Blocks.OAK_DOOR);
+			ignoreList.add(Blocks.SPRUCE_DOOR);
+			ignoreList.add(Blocks.JUNGLE_DOOR);
+			ignoreList.add(Blocks.IRON_DOOR);
+			ignoreList.add(Blocks.SKULL);
 		}
 	}
 	
@@ -67,8 +68,7 @@ public class UtilMoveBlock
 				//world.destroyBlock(posMoveToHere, false);
 				world.destroyBlock(pos, false);
 				world.setBlockState(posMoveToHere, hit);//pulls the block towards the player
-				 
-				player.swingItem();
+				player.swingArm(EnumHand.MAIN_HAND);
 			} 
 		} 
 	}
